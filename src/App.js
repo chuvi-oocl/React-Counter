@@ -1,12 +1,13 @@
 import './App.css';
 
-import Counter from './Components/Counter'
+import MultiCounter from './Components/MultiCounter'
 
 function App() {
+  const size = 100;
   return (
     <div className="App">
       <header className="App-header">
-        <Counter/>
+        <MultiCounter/>
       </header>
     </div>
   );
