@@ -16,7 +16,7 @@ export default class CounterGroup extends Component {
             <div>
                 {
                     initArraySize.map((value) =>
-                        <Counter key={value} onTotalIncrease={this.props.onIncrease}  onTotalDecrease={this.props.onDecrease}/>
+                        <Counter key={value} onTotalIncrease={this.props.onIncrease} onTotalDecrease={this.props.onDecrease} />
                     )
                 }
 

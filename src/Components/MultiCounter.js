@@ -1,16 +1,18 @@
 import React, { Component } from 'react';
 import CounterGroup from './CounterGroup'
+import CounterGroupSum from './CounterGroupSum';
+import CounterSizeGenerator from './CounterSizeGenerator';
 
-export default class MultiCounterCounter extends Component {
+export default class MultiCounter extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            size : 0,
-            sum : 0
+            size: 0,
+            sum: 0
         };
     }
 
-    resetCounter = () =>{
+    resetCounter = () => {
         this.setState(() => ({
             size: 0,
             sum: 0
@@ -25,7 +27,7 @@ export default class MultiCounterCounter extends Component {
         }));
     };
 
-    
+
     onIncrease = () => {
         this.setState((prevState) => ({ sum: prevState.sum + 1 }));
     };
@@ -35,14 +37,13 @@ export default class MultiCounterCounter extends Component {
     };
 
     render() {
-        const {size, sum} = this.state;
+        const { size, sum } = this.state;
+
         return (
             <div>
-                <input type="number" value={size} onChange={this.onChange} />
-                <div>
-                    Sum: {this.state.sum}
-                </div>
-                <CounterGroup size={size} sum={sum} onIncrease={this.onIncrease} onDecrease={this.onDecrease}/>
+                <CounterSizeGenerator size={size} onChange={this.onChange} />
+                <CounterGroupSum sum={sum} />
+                <CounterGroup size={size} onIncrease={this.onIncrease} onDecrease={this.onDecrease} />
             </div>
         )
     }
