@@ -5,18 +5,44 @@ export default class MultiCounterCounter extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            size : 0
+            size : 0,
+            sum : 0
         };
     }
+
+    resetCounter = () =>{
+        this.setState(() => ({
+            size: 0,
+            sum: 0
+        }));
+    }
+
+
     onChange = (event) => {
-        this.setState(() => ({size: event.target.value}))
+        //this.resetCounter();
+        this.setState(() => ({
+            size: event.target.value
+        }));
     };
+
+    
+    onIncrease = () => {
+        this.setState((prevState) => ({ sum: prevState.sum + 1 }));
+    };
+
+    onDecrease = () => {
+        this.setState((prevState) => ({ sum: prevState.sum - 1 }));
+    };
+
     render() {
-        const size = this.state.size;
+        const {size, sum} = this.state;
         return (
             <div>
                 <input type="number" value={size} onChange={this.onChange} />
-                <CounterGroup size={size} />
+                <div>
+                    Sum: {this.state.sum}
+                </div>
+                <CounterGroup size={size} sum={sum} onIncrease={this.onIncrease} onDecrease={this.onDecrease}/>
             </div>
         )
     }

@@ -7,13 +7,20 @@ export default class Counter extends Component {
         }
     }
 
+
     onIncrease = () => {
         this.setState((prevState) => ({ number: prevState.number + 1 }));
+        this.props.onTotalIncrease();
     };
 
     onDecrease = () => {
         this.setState((prevState) => ({ number: prevState.number - 1 }));
+        this.props.onTotalDecrease();
     };
+
+    //resetCounter = () =>{
+    //    this.setState(() => ({number: 0}))
+    //}
 
     render() {
         return (
