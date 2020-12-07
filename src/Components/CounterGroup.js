@@ -9,17 +9,18 @@ export default class CounterGroup extends Component {
         return Array.from(Array(size).keys());
     }
 
-    render() {
+    generateCounters = () =>{
         const size = this.props.size ? parseInt(this.props.size) : 0;
         const initArraySize = this.initArraySize(size);
+        return initArraySize.map((value) =>
+            <Counter key={value} onTotalIncrease={this.props.onIncrease} onTotalDecrease={this.props.onDecrease} />
+        )
+    }
+
+    render() {
         return (
             <div>
-                {
-                    initArraySize.map((value) =>
-                        <Counter key={value} onTotalIncrease={this.props.onIncrease} onTotalDecrease={this.props.onDecrease} />
-                    )
-                }
-
+                {this.generateCounters()}
             </div>
         )
     }
