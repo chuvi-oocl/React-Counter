@@ -8,20 +8,18 @@ export default class MultiCounter extends Component {
         super(props);
         this.state = {
             size: 0,
-            sum: 0,
-            randomKey: Math.random()
+            sum: 0
         };
     }
 
     resetCounter = () => {
         this.setState(() => ({
             size: 0,
-            sum: 0,
-            randomKey: Math.random()
+            sum: 0
         }));
     }
 
-    onChange = (event) => {
+    onSizeChange = (event) => {
         this.resetCounter();
         this.setState(() => ({
             size: event.target.value
@@ -38,13 +36,13 @@ export default class MultiCounter extends Component {
     };
 
     render() {
-        const { size, sum, randomKey } = this.state;
+        const { size, sum } = this.state;
 
         return (
             <div>
-                <CounterSizeGenerator size={size} onChange={this.onChange} />
+                <CounterSizeGenerator size={size} onSizeChange={this.onSizeChange} />
                 <CounterGroupSum sum={sum} />
-                <CounterGroup key={randomKey} size={size} onIncrease={this.onIncrease} onDecrease={this.onDecrease} />
+                <CounterGroup size={size} onIncrease={this.onIncrease} onDecrease={this.onDecrease} />
             </div>
         )
     }

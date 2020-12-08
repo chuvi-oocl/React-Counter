@@ -1,10 +1,18 @@
 import React, { Component } from 'react';
+import testUtils from 'react-dom/test-utils';
 export default class Counter extends Component {
     constructor(props) {
         super(props)
         this.state = {
             number: 0
         }
+    }
+
+    shouldComponentUpdate = (newProps) =>{
+        if(newProps.size != this.props.size){
+            this.setState({number: 0});
+        }
+        return true;
     }
 
     onIncrease = () => {
