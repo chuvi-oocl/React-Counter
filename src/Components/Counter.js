@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import testUtils from 'react-dom/test-utils';
 export default class Counter extends Component {
     constructor(props) {
         super(props)
@@ -9,7 +8,7 @@ export default class Counter extends Component {
     }
 
     shouldComponentUpdate = (newProps) =>{
-        if(newProps.size != this.props.size){
+        if(newProps.size !== this.props.size){
             this.setState({number: 0});
         }
         return true;
@@ -17,12 +16,12 @@ export default class Counter extends Component {
 
     onIncrease = () => {
         this.setState((prevState) => ({ number: prevState.number + 1 }));
-        this.props.onTotalIncrease();
+        this.props.increase();
     };
 
     onDecrease = () => {
         this.setState((prevState) => ({ number: prevState.number - 1 }));
-        this.props.onTotalDecrease();
+        this.props.decrease();
     };
 
     render() {
