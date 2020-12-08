@@ -1,39 +1,31 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import testUtils from 'react-dom/test-utils';
-export default class Counter extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            number: 0
-        }
-    }
+const Counter = ({ size, onTotalIncrease, onTotalDecrease }) => {
+    const [number, setNumber] = useState(0);
 
-    shouldComponentUpdate = (newProps) =>{
-        if(newProps.size != this.props.size){
-            this.setState({number: 0});
-        }
-        return true;
-    }
+    useEffect(() =>{
+        setNumber(0);
+    }, [size])
 
-    onIncrease = () => {
-        this.setState((prevState) => ({ number: prevState.number + 1 }));
-        this.props.onTotalIncrease();
+    const onIncrease = () => {
+        setNumber((prevState) => prevState + 1);
+        onTotalIncrease();
     };
 
-    onDecrease = () => {
-        this.setState((prevState) => ({ number: prevState.number - 1 }));
-        this.props.onTotalDecrease();
+    const onDecrease = () => {
+        setNumber((prevState) => prevState - 1);
+        onTotalDecrease();
     };
 
-    render() {
-        return (
-            <section>
-                <input type="button" value="+" onClick={this.onIncrease} />
+    return (
+        <section>
+            <input type="button" value="+" onClick={onIncrease} />
 
-                <span >{this.state.number}</span>
+            <span >{number}</span>
 
-                <input type="button" value="-" onClick={this.onDecrease} />
-            </section>
-        )
-    }
+            <input type="button" value="-" onClick={onDecrease} />
+        </section>
+    )
 }
+
+export default Counter;
